@@ -4,6 +4,7 @@
   "version": "0.2.0",
   "description": "Gestor de crédito web multi-usuario (React + Express + Postgres)",
   "type": "module",
+  "packageManager": "pnpm@10.28.0",
   "scripts": {
     "dev": "concurrently -k -n api,web -c blue,green \"pnpm dev:api\" \"pnpm dev:web\"",
     "dev:api": "tsx watch --env-file=.env src/server/index.ts",
