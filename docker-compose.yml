@@ -1,0 +1,34 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    ports:
+      - '5433:5432'
+    environment:
+      POSTGRES_DB: credit_card
+      POSTGRES_USER: credit
+      POSTGRES_PASSWORD: credit
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U credit -d credit_card']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - '3000:3000'
+    environment:
+      DATABASE_URL: postgres://credit:credit@db:5432/credit_card
+      JWT_SECRET: ${JWT_SECRET:-cambia-este-secreto-en-portainer}
+      PORT: 3000
+      NODE_ENV: production
+
+volumes:
+  pgdata:

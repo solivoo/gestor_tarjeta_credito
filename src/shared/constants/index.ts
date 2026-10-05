@@ -1,0 +1,4 @@
+export const DEFAULT_CURRENCY = 'USD'
+export const MAX_SIMULATION_MONTHS = 600
+export const MONEY_DISPLAY_DECIMALS = 2
+export const MONEY_INTERNAL_DECIMALS = 6
