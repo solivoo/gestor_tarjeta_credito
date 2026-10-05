@@ -1,6 +1,9 @@
 packages:
   - .
 
+# Evita ERR_PNPM_IGNORED_BUILDS en CI/Docker/Portainer
+strictDepBuilds: false
+
 allowBuilds:
   esbuild: true
-  sqlite3: false
+  sqlite3: true
